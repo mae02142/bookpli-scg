@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+management:
+  endpoint:
+    gateway:
+      enabled: true # 게이트웨이 관련 엔드포인트 활성화
+  endpoints:
+    web:
+      exposure:
+        include: gateway # Actuator에서 'gateway' 엔드포인트를 노출
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: bookservice
+          uri: http://localhost:9001
+          predicates:
+            - Path=/bookservice/**
+        - id: musicservice
+          uri: http://localhost:9002
+          predicates:
+            - Path=/musicservice/**
+        - id: authservice
+          uri: http://localhost:9003
+          predicates:
+            - Path=/authservice/**
