@@ -26,3 +26,16 @@ spring:
           uri: http://localhost:9003
           predicates:
             - Path=/authservice/**
+      globalcors:
+        corsConfigurations:
+          '[/**]': # 모든 경로에 대해 CORS 설정
+            allowedOrigins: "http://localhost:3000" # 프론트엔드 주소
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
